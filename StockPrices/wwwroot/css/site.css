@@ -1,0 +1,13 @@
+
+table#t01 {
+    border-spacing: 15px;
+}
+
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 30%;
+}

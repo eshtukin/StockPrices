@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Capital One Investing</title>
+    <link rel="stylesheet" type="text/css" href="css/site.css" />
+    <script src="lib/bower_components/angular/angular.js"></script>
+    <script src="lib/bower_components/angular-route/angular-route.js"></script>
+    <script src="js/site.js"></script>
+    <script src="js/prices.js"></script>
+</head>
+
+<body ng-controller="PricesCtrl">
+
+    <h2>&nbsp;Stock Price Information</h2>
+    <p />
+
+    <table id="t01">
+        <tr>
+            <td>Security:</td>
+            <td>
+                <select ng-model="security">
+                    <option value="">--- Choose one ---</option>
+                    <option ng-repeat="security in securityList" value="{{security}}">{{security}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Start Date:</td>
+            <td>
+                <input type="date" min="2014-01-01" max="2019-01-01" data-select-all-on-focus ng-model="startDate">
+            </td>
+        </tr>
+        <tr>
+            <td>End Date:</td>
+            <td>
+                <input type="date" min="2014-01-01" max="2019-01-01" data-select-all-on-focus ng-model="endDate">
+            </td>
+        </tr>
+    </table>
+
+    <p />
+
+    <div>
+        <button data-ng-disabled="!canFetch()" ng-click="getPrices()">Get Prices</button>
+        <button data-ng-disabled="!enableMaxDailyProfit" ng-click="maxDailyProfit()">Max Daily Profit</button>
+    </div>
+
+    <p ng-if="dataLoading">&nbsp;&nbsp;Please wait...</p>
+    <p />
+
+    <div class="row">
+        <div class="column" ng-if="showMonthlyAveragesTable">
+            <h4>&nbsp;Monthly Averages</h4>
+            <table border="1" cellpadding="10">
+                <tr>
+                    <th>Month</th>
+                    <th>Open</th>
+                    <th>Close</th>
+                </tr>
+                <tr ng-repeat="entry in securitySummary._monthlyAverages">
+                    <td>{{entry._month}}</td>
+                    <td>{{entry._open}}</td>
+                    <td>{{entry._close}}</td>
+                </tr>
+            </table>
+        </div>
+        <p />
+
+        <div class="column" ng-if="showMaxDailyProfit">
+            <h4>&nbsp;Max Daily Profit</h4>
+            <table border="1" cellpadding="10">
+                <tr>
+                    <th>Date</th>
+                    <th>Profit</th>
+                </tr>
+                <tr>
+                    <td>{{securitySummary._maxDailyProfit._date}}</td>
+                    <td>{{securitySummary._maxDailyProfit._profit}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
