@@ -27,7 +27,6 @@ angular.module('PricesController', [])
     }; 
 
     function canFetch() {
-//        return $scope.security !== "" && $scope.startDate !== null && $scope.endDate !== null;
         if ($scope.security === "" || $scope.startDate === null || $scope.endDate === null) {
             $scope.enableRestOfButtons = false;
             return false;
