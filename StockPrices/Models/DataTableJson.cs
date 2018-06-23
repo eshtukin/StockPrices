@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
 namespace StockPrices.Models
@@ -9,10 +7,10 @@ namespace StockPrices.Models
     [DataContract]
     public class DataTableJson
     {
-        [DataMember]
-        public List<List<Object>> data { get; set; }
+        [DataMember(Name = "data")]
+        public List<List<Object>> Data { get; set; }
 
-        [DataMember]
-        public List<ColumnJson> columns { get; set; }
+        [DataMember(Name = "columns")]
+        public List<ColumnJson> Columns { get; set; }
     }
 }

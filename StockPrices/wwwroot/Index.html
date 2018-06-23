@@ -13,7 +13,7 @@
 <body ng-controller="PricesCtrl">
 
     <h2>&nbsp;Stock Price Information</h2>
-    <p />
+    <br />
 
     <table id="t01">
         <tr>
@@ -39,19 +39,19 @@
         </tr>
     </table>
 
-    <p />
-
+    <br />
     <div>
-        <button data-ng-disabled="!canFetch()" ng-click="getPrices()">Get Prices</button>
-        <button data-ng-disabled="!enableMaxDailyProfit" ng-click="maxDailyProfit()">Max Daily Profit</button>
+        <button data-ng-disabled="!canFetch()" ng-click="getPrices()">Average Prices</button>
+        <button data-ng-disabled="!enableRestOfButtons" ng-click="maxDailyProfit()">Max Daily Profit</button>
+        <button data-ng-disabled="!enableRestOfButtons" ng-click="getBusyDays()">Busy Days</button>
+        <button data-ng-disabled="!enableRestOfButtons" ng-click="getBiggestLoser()">Biggest Loser</button>
     </div>
-
     <p ng-if="dataLoading">&nbsp;&nbsp;Please wait...</p>
-    <p />
+    <br />
 
     <div class="row">
         <div class="column" ng-if="showMonthlyAveragesTable">
-            <h4>&nbsp;Monthly Averages</h4>
+            <h4>&nbsp;Monthly Averages:</h4>
             <table border="1" cellpadding="10">
                 <tr>
                     <th>Month</th>
@@ -65,18 +65,54 @@
                 </tr>
             </table>
         </div>
-        <p />
 
-        <div class="column" ng-if="showMaxDailyProfit">
-            <h4>&nbsp;Max Daily Profit</h4>
-            <table border="1" cellpadding="10">
+        <div class="column">
+            <div ng-if="showMaxDailyProfit">
+                <h4>&nbsp;Max Daily Profit:</h4>
+                <table border="1" cellpadding="10">
+                    <tr>
+                        <th>Date</th>
+                        <th>Profit</th>
+                    </tr>
+                    <tr>
+                        <td>{{securitySummary._maxDailyProfit._date}}</td>
+                        <td>{{securitySummary._maxDailyProfit._profit}}</td>
+                    </tr>
+                </table>
+            </div>
+            <br /><br />
+            <div ng-if="showBiggestLoser">
+                <h4>&nbsp;Biggest Loser:</h4>
+                <table border="1" cellpadding="10">
+                    <tr>
+                        <th>Security</th>
+                        <th>Days of Loss</th>
+                    </tr>
+                    <tr>
+                        <td>{{biggestLoser.ticker}}</td>
+                        <td>{{biggestLoser.daysOfLoss}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="column" ng-if="showBusyDaysList">
+            <table border="1" cellpadding="10" rules="cols">
+                <tr>
+                    <td><b>Average Volume:</b></td>
+                    <td>{{securitySummary._averageVolume}}</td>
+                </tr>
+            </table>
+            <br />
+            <h4>&nbsp;Busy Days:</h4>
+            <table border="1" cellpadding="12">
                 <tr>
                     <th>Date</th>
-                    <th>Profit</th>
+                    <th>Volume</th>
                 </tr>
-                <tr>
-                    <td>{{securitySummary._maxDailyProfit._date}}</td>
-                    <td>{{securitySummary._maxDailyProfit._profit}}</td>
+                <tr ng-repeat="entry in busyDaysList">
+                    <td>{{entry._date}}</td>
+                    <td>{{entry._volume}}</td>
                 </tr>
             </table>
         </div>

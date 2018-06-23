@@ -32,13 +32,13 @@ namespace StockPricesUnitTest
             securityList.Count.Should().Be(3);
             securityList[0].As<SecurityDaily>().Ticker.Should().Be("GOOGL");
             securityList[0].As<SecurityDaily>().Date.Should().Be("2016-01-04");
-            securityList[0].As<SecurityDaily>().Open.Should().Be((decimal)762.2);
-            securityList[1].As<SecurityDaily>().High.Should().Be((decimal)769.2);
-            securityList[1].As<SecurityDaily>().Low.Should().Be((decimal)755.65);
-            securityList[1].As<SecurityDaily>().Close.Should().Be((decimal)761.53);
+            securityList[0].As<SecurityDaily>().Open.Should().Be((Decimal)762.2);
+            securityList[1].As<SecurityDaily>().High.Should().Be((Decimal)769.2);
+            securityList[1].As<SecurityDaily>().Low.Should().Be((Decimal)755.65);
+            securityList[1].As<SecurityDaily>().Close.Should().Be((Decimal)761.53);
             securityList[2].As<SecurityDaily>().Ticker.Should().Be("GOOGL");
             securityList[2].As<SecurityDaily>().Date.Should().Be("2016-01-06");
-            securityList[2].As<SecurityDaily>().Volume.Should().Be((decimal)2410301.0);
+            securityList[2].As<SecurityDaily>().Volume.Should().Be((Decimal)2410301.0);
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 
 namespace StockPrices.Models
@@ -10,7 +6,7 @@ namespace StockPrices.Models
     [DataContract]
     public class ResponseJson
     {
-        [DataMember]
-        public DataTableJson datatable { get; set; }
+        [DataMember(Name = "datatable")]
+        public DataTableJson Datatable { get; set; }
     }
 }

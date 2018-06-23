@@ -3,7 +3,6 @@ table#t01 {
     border-spacing: 15px;
 }
 
-
 .row {
     display: flex;
 }
@@ -11,3 +10,4 @@ table#t01 {
 .column {
     flex: 30%;
 }
+
